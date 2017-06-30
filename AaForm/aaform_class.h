@@ -49,7 +49,7 @@ private:
 	bool PtInConvexPolygon(aaf_pnt * p, aaf_pnt pt);
 	void SortPoints();
 	double Area();
-	
+
 private:
 	int m_bmpWidth;
 	int m_bmpHeight;

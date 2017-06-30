@@ -80,7 +80,7 @@ bool aaform::CreateTransform(vector<double> xCorner, vector<double> yCorner, int
 		return false;
 
 	//Find the dimensions of the bitmap that needs to be created and offset the corners so that the lowest x value is at 0 and the lowest y is at 0
-	
+
 	rc.left = 0;
 	rc.right = 0;
 	rc.top = 0;
@@ -414,7 +414,7 @@ bool aaform::DoTransform()
 		pRGBBuffer[i * 3 + 2] = pHead[i].rgbRed;
 	}
 
-	gSaveBitmap(rc.right,rc.bottom,pRGBBuffer,rc.right*3*rc.bottom,"E:\\b.bmp");
+	gSaveBitmap(rc.right,rc.bottom,pRGBBuffer,rc.right*3*rc.bottom,"E:\\f.bmp");
 
 	//Clear memory
 	delete [] dstdib;

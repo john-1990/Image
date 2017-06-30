@@ -5,7 +5,10 @@
 #include "stdafx.h"
 #include "AaForm.h"
 #include "AaFormDlg.h"
+#include <atlimage.h>
 #include "aaform_class.h"
+#include <vector>
+using std::vector;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,7 +67,7 @@ BEGIN_MESSAGE_MAP(CAaFormDlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_BUTTON1, &CAaFormDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BTN_RUN, &CAaFormDlg::OnBnClickedBtnRun)
 END_MESSAGE_MAP()
 
 
@@ -154,7 +157,7 @@ HCURSOR CAaFormDlg::OnQueryDragIcon()
 }
 
 
-void CAaFormDlg::OnBnClickedButton1()
+void CAaFormDlg::OnBnClickedBtnRun()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CBitmap srcBmp;
@@ -168,23 +171,23 @@ void CAaFormDlg::OnBnClickedButton1()
 	BYTE* pRGBBuffer = new BYTE[bmp.bmWidthBytes * bmp.bmHeight];
 	srcBmp.GetBitmapBits(bmp.bmWidthBytes* bmp.bmHeight,pRGBBuffer);
 
-	//RGBQUAD* pRGBABuffer = new RGBQUAD[bmp.bmWidth * bmp.bmHeight];
-	//for(int i=0; i<bmp.bmWidth*bmp.bmHeight; i++)
-	//{
-	//	pRGBABuffer[i].rgbBlue = *pRGBBuffer++;
-	//	pRGBABuffer[i].rgbGreen = *pRGBBuffer++;
-	//	pRGBABuffer[i].rgbRed = *pRGBBuffer++;
-	//	pRGBABuffer[i].rgbReserved = 0;
-	//}
+	RGBQUAD* pRGBABuffer = new RGBQUAD[bmp.bmWidth * bmp.bmHeight];
+	for(int i=0; i<bmp.bmWidth*bmp.bmHeight; i++)
+	{
+		pRGBABuffer[i].rgbBlue = *pRGBBuffer++;
+		pRGBABuffer[i].rgbGreen = *pRGBBuffer++;
+		pRGBABuffer[i].rgbRed = *pRGBBuffer++;
+		pRGBABuffer[i].rgbReserved = 0;
+	}
 
-	//vector<double> x,y;
-	//x.push_back(200); y.push_back(30);
-	//x.push_back(500); y.push_back(0.0);
-	//x.push_back(300); y.push_back(1500);
-	//x.push_back(0); y.push_back(1400);
+	vector<double> x,y;
+	x.push_back(200); y.push_back(30);
+	x.push_back(500); y.push_back(0.0);
+	x.push_back(300); y.push_back(1500);
+	x.push_back(0); y.push_back(1400);
 
-	//aaform myForm;
-	//myForm.StartAAForm(bmp.bmWidth,bmp.bmHeight,pRGBABuffer,x,y);
+	aaform myForm;
+	myForm.StartAAForm(bmp.bmWidth,bmp.bmHeight,pRGBABuffer,x,y);
 
 	// Test 2 
 	// 分割成 3 * 3 网格
